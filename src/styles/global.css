@@ -1,4 +1,4 @@
-/* Base styles with shortened class names - Optimized for performance */
+/* Base styles with shortened class names */
 :root {
   --primary: #6366f1;
   --primary-dark: #4f46e5;
@@ -36,7 +36,7 @@ body {
   padding-right: 1rem;
 }
 
-/* Typography - Optimized */
+/* Typography */
 .h1 {
   font-size: 2.5rem;
   font-weight: 700;
@@ -71,7 +71,7 @@ body {
   line-height: 1.5;
 }
 
-/* Buttons - Optimized with GPU acceleration */
+/* Buttons */
 .bt {
   display: inline-flex;
   align-items: center;
@@ -79,8 +79,7 @@ body {
   padding: 0.75rem 1.5rem;
   font-weight: 500;
   border-radius: 0.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  will-change: transform;
+  transition: all 0.2s;
 }
 
 .bt-pr {
@@ -88,6 +87,7 @@ body {
   color: white;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .bt-pr:hover {
@@ -104,13 +104,13 @@ body {
   height: 200%;
   background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
   transform: rotate(45deg);
-  transition: opacity 0.3s ease;
+  transition: all 0.6s ease;
   opacity: 0;
-  pointer-events: none;
 }
 
 .bt-pr:hover::before {
   opacity: 1;
+  transform: translateY(-1px);
 }
 
 .bt-sc {
@@ -118,7 +118,7 @@ body {
   backdrop-filter: blur(10px);
   color: var(--gray-900);
   border: 1px solid rgba(99, 102, 241, 0.2);
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .bt-sc:hover {
@@ -128,7 +128,7 @@ body {
   box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
 }
 
-/* Cards - Optimized */
+/* Cards */
 .cd {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(20px);
@@ -137,8 +137,7 @@ body {
     0 8px 32px rgba(31, 38, 135, 0.15),
     inset 0 0 0 1px rgba(255, 255, 255, 0.4);
   padding: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  will-change: transform;
+  transition: all 0.3s ease;
 }
 
 .cd:hover {
@@ -148,9 +147,10 @@ body {
     inset 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
-/* Gradients - Optimized */
+/* Gradients */
 .gr-pr {
   background: linear-gradient(135deg, var(--primary), var(--accent));
+  animation: gradientShift 8s ease infinite;
 }
 
 .gr-tx {
@@ -158,22 +158,38 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientShift 8s ease infinite;
 }
 
-/* Animations - Optimized with GPU acceleration */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animations */
 .an {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .an.in {
   opacity: 1;
   transform: translateY(0);
+  filter: none;
 }
 
-/* Responsive utilities - Optimized */
+/* Typing animation */
+.tp {
+  overflow: hidden;
+  border-right: .15em solid;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+}
+
+/* Responsive utilities */
 @media (min-width: 640px) {
   .co {
     padding-left: 1.5rem;
@@ -197,29 +213,5 @@ body {
   
   .h1 {
     font-size: 3.5rem;
-  }
-}
-
-/* Performance optimizations */
-* {
-  box-sizing: border-box;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Reduce paint and layout thrashing */
-.typing-cursor {
-  display: none;
-}
-
-/* Optimize animations for 60fps */
-@media (prefers-reduced-motion: reduce) {
-  .an,
-  .bt,
-  .cd {
-    transition: none;
   }
 }

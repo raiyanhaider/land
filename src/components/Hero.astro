@@ -1,0 +1,677 @@
+---
+---
+
+<section class="pt-32 pb-20 overflow-hidden">
+  <div class="co">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h1 class="an h1 mb-6 inline-block">
+        <span class="gr-tx">Write Better Content</span> <br />
+        <span>With AI That Understands Your Style</span>
+      </h1>
+      
+      <p class="an d1 text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+        Atom Writer combines powerful AI with intuitive tools to help you create engaging content
+        faster than ever before - without losing your unique voice.
+      </p>
+      
+      <div class="an d2 flex flex-wrap justify-center gap-4 relative z-20">
+        <a href="https://app.atomwriter.com/signup" class="bg-primary-500 hover:bg-primary-600 text-white text-xl font-medium px-12 py-4 rounded-xl transition-all">Start Free Trial</a>
+        <a href="#how-it-works" class="bg-white text-gray-600 hover:text-gray-800 text-xl font-medium px-12 py-4 rounded-xl transition-all">See How It Works</a>
+      </div>
+    </div>
+    
+    <div class="an d3 relative mx-auto max-w-4xl min-h-[600px]">
+      <div class="cd overflow-hidden bg-white p-8 rounded-xl shadow-xl relative z-10">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-xl">✨</span>
+          <h2 class="text-2xl font-bold">Step by Step Content Builder</h2>
+        </div>
+        
+        <p class="text-gray-600 mb-10">Create amazing content in 5 simple steps</p>
+        
+        <div class="relative mb-12">
+          <div class="flex justify-between mb-8 relative">
+            <div class="progress-line"></div>
+            <div class="step active" data-step="1"><span>1</span><div class="step-label">Basic Info</div></div>
+            <div class="step" data-step="2"><span>2</span><div class="step-label">Title Selection</div></div>
+            <div class="step" data-step="3"><span>3</span><div class="step-label">Content Outline</div></div>
+            <div class="step" data-step="4"><span>4</span><div class="step-label">Content Writing</div></div>
+            <div class="step" data-step="5"><span>5</span><div class="step-label">Final Content</div></div>
+          </div>
+          
+          <div id="step-content" class="space-y-8">
+            <div>
+              <h3 class="text-gray-900 font-medium mb-4">Content Description</h3>
+              <div class="relative">
+                <textarea
+                  id="content-description"
+                  class="w-full h-[120px] p-4 border border-gray-200 rounded-lg resize-none focus:outline-none focus:border-primary-500"
+                  placeholder="Describe what you want to write about..."
+                ></textarea>
+                <div class="typing-cursor"></div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-gray-900 font-medium mb-4">Language</h3>
+              <div class="relative">
+                <select
+                  id="language-select"
+                  class="w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:border-primary-500 appearance-none bg-white"
+                >
+                  <option value="en">English</option>
+                  <option value="es">Spanish</option>
+                  <option value="fr">French</option>
+                  <option value="de">German</option>
+                  <option value="it">Italian</option>
+                  <option value="pt">Portuguese</option>
+                  <option value="nl">Dutch</option>
+                  <option value="pl">Polish</option>
+                </select>
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 class="text-gray-900 font-medium mb-4">Keywords</h3>
+              <div class="relative">
+                <input
+                  type="text"
+                  id="keywords"
+                  class="w-full p-4 border border-gray-200 rounded-lg focus:outline-none focus:border-primary-500"
+                  placeholder="Enter keywords separated by commas..."
+                />
+                <div class="typing-cursor"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex justify-end sticky bottom-8 bg-white pt-4 border-t border-gray-100">
+          <button id="next-step" class="bg-black text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-900 transition-colors hidden">
+            Next Step
+          </button>
+        </div>
+      </div>
+      
+      <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2  w-[150%] h-[150%] bg-gradient-to-r from-primary-100/50 via-primary-200/30 to-accent-100/50 blur-3xl rounded-full opacity-100"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Intersection Observer for animation trigger
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const contentBuilder = entry.target;
+        const descriptionElement = contentBuilder.querySelector('#content-description');
+        const keywordsElement = contentBuilder.querySelector('#keywords');
+        
+        if (descriptionElement && keywordsElement) {
+          startTypingAnimation(descriptionElement, keywordsElement);
+        }
+        
+        observer.unobserve(contentBuilder);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  const contentDescription = [
+    "Creating a comprehensive guide about budget-friendly travel tips and money-saving strategies.",
+    "Writing about smart ways to explore the world without breaking the bank.",
+    "Sharing essential tips for planning affordable yet memorable travel experiences."
+  ];
+  
+  const keywords = [
+    "budget travel, backpacking, cheap flights, hostel stays, travel hacks",
+    "affordable travel, money saving, travel planning, budget tips",
+    "cheap accommodation, local transport, budget-friendly destinations"
+  ];
+  
+  const titleSuggestions = [
+    "The Ultimate Guide to Budget Travel: See More, Spend Less",
+    "How to Travel the World on a Shoestring Budget",
+    "Budget Travel 101: Your Complete Money-Saving Guide",
+    "Smart Traveler's Guide to Affordable Adventures",
+    "Travel Hacks: Explore the World Without Breaking the Bank",
+    "Budget-Friendly Travel Tips for Amazing Adventures",
+    "Master the Art of Budget Travel in 5 Easy Steps",
+    "The Savvy Traveler's Guide to Affordable Exploration",
+    "How to Plan an Amazing Trip on a Tight Budget",
+    "Budget Travel Secrets: Your Path to Affordable Adventures"
+  ];
+  
+  const outlineTemplates = [
+    {
+      title: "Introduction",
+      items: [
+        "Why budget travel is more accessible than ever",
+        "Benefits of traveling on a budget",
+        "Overview of key money-saving strategies"
+      ]
+    },
+    {
+      title: "Step 1: Smart Flight Booking",
+      items: [
+        "Best time to book flights",
+        "Using flight comparison tools",
+        "Tips for finding cheap flights"
+      ]
+    },
+    {
+      title: "Step 2: Budget Accommodation",
+      items: [
+        "Hostel vs hotel comparison",
+        "Using accommodation apps",
+        "Alternative lodging options"
+      ]
+    },
+    {
+      title: "Step 3: Local Transportation",
+      items: [
+        "Public transport options",
+        "Walking and cycling tips",
+        "Transportation passes and cards"
+      ]
+    }
+  ];
+  
+  const finalContent = {
+    title: "The Ultimate Guide to Budget Travel: See More, Spend Less",
+    content: `Introduction <br>
+Budget travel is more possible than ever thanks to travel apps, low-cost airlines, and easy access to planning tools. You don’t need a lot of money to see the world—you just need a smart strategy.
+
+Traveling on a budget often leads to more meaningful experiences. You’ll meet locals, discover hidden spots, and enjoy real culture without overspending. The secret is knowing where and how to save.
+
+The core of budget travel is simple: book cheap flights, stay in affordable places, use local transport, and plan ahead. With these steps, you can travel more for less.<br>
+Step 1: Smart Flight Booking <br>
+Flights can be one of your biggest expenses, but smart booking helps. Book 1–3 months early for domestic trips and 2–6 months for international. Avoid weekends and peak seasons.
+
+Use comparison sites like Skyscanner or Google Flights to find deals. Turn on alerts so you know when prices drop.
+
+For the best savings, stay flexible. Choose budget airlines, travel mid-week, and consider flying into nearby airports if it’s cheaper.<br>
+Step 2: Budget Accommodation <br>
+Skip expensive hotels. Hostels, guesthouses, and homestays are cheaper and often more social. Apps like Hostelworld and Airbnb help you find great deals easily.
+
+Want to save more? Try Couchsurfing or house-sitting. These options can be free and offer unique local experiences that you won’t get in a hotel.<br>
+Step 3: Local Transportation <br>
+Using local transport is one of the best ways to save money. Buses, trains, and subways are far cheaper than taxis. Learn the basics of the local system before you arrive.
+
+Walk or rent a bike if the area is safe—it's budget-friendly and helps you explore more naturally.
+
+Many cities offer travel passes with unlimited rides and tourist discounts. These passes can be a great value if you’re staying a few days.<br>
+Travel smart, spend less, and experience more—it’s that simple.
+`
+  };
+
+  let currentIndex = 0;
+  let currentStep = 1;
+  let selectedTitle = "";
+  
+  function typeText(element, text, callback, speed = 25) {
+    let charIndex = 0;
+    element.value = '';
+    const cursor = element.nextElementSibling;
+    if (cursor) cursor.style.display = 'block';
+
+    // Add initial delay before typing starts
+    setTimeout(() => {
+      function type() {
+        if (charIndex < text.length) {
+          if (element.tagName.toLowerCase() === 'textarea') {
+            element.value = text.substring(0, charIndex + 1);
+            charIndex += 1;
+          } else {
+            element.value = text.substring(0, charIndex + 1);
+            charIndex += 1;
+          }
+          setTimeout(type, 25);
+        } else {
+          if (cursor) cursor.style.display = 'none';
+          if (callback) callback();
+        }
+      }
+      type();
+    }, 1000); // 1 second delay before typing starts
+  }
+  
+  function startTypingAnimation(descriptionElement, keywordsElement) {
+    if (!descriptionElement || !keywordsElement) return;
+    
+    typeText(descriptionElement, contentDescription[currentIndex], () => {
+      setTimeout(() => {
+        typeText(keywordsElement, keywords[currentIndex], () => {
+          currentIndex = (currentIndex + 1) % contentDescription.length;
+          setTimeout(() => {
+            simulateNextClick();
+          }, 1000);
+        });
+      }, 800);
+    });
+  }
+
+  function simulateNextClick() {
+    const nextButton = document.getElementById('next-step');
+    if (nextButton) {
+      // Add visual feedback for button click
+      nextButton.style.transform = 'scale(0.95)';
+      nextButton.classList.add('pulse-animation');
+      setTimeout(() => {
+        nextButton.style.transform = 'scale(1)';
+        nextButton.classList.remove('pulse-animation');
+      }, 200);
+      nextButton.click();
+    }
+  }
+  
+  function showTitleSelection() {
+    const stepContent = document.getElementById('step-content');
+    if (!stepContent) return;
+    const randomTitleIndex = Math.floor(Math.random() * titleSuggestions.length);
+    
+    stepContent.innerHTML = `
+      <div class="space-y-4">
+        ${titleSuggestions.map((title, index) => `
+          <button class="title-option w-full text-left p-4 rounded-lg border border-gray-200 hover:border-primary-500 transition-all opacity-0 transform translate-y-4">
+            ${title}
+          </button>
+        `).join('')}
+      </div>
+    `;
+
+    const titleButtons = stepContent.querySelectorAll('.title-option');
+    let selectedButton = null;
+
+    // Function to simulate title selection
+    function simulateTitleSelection() {
+      const targetButton = titleButtons[randomTitleIndex];
+      if (!targetButton || selectedButton) return;
+      
+      selectedButton = targetButton;
+      selectedTitle = targetButton.textContent || '';
+      
+      titleButtons.forEach(b => {
+        b.classList.remove('selected', 'border-primary-500', 'bg-primary-50');
+        b.style.opacity = '0.5';
+      });
+      
+      targetButton.classList.add('selected', 'border-primary-500', 'bg-primary-50');
+      targetButton.style.opacity = '1';
+      
+      // Automatically proceed to next step after selection
+      setTimeout(() => {
+        simulateNextClick();
+      }, 800);
+    }
+
+    titleButtons.forEach((button, index) => {
+      setTimeout(() => {
+        button.style.transition = 'all 0.3s ease';
+        button.style.opacity = '1';
+        button.style.transform = 'translateY(0)';
+      }, index * 100);
+    });
+    
+    // Start title selection animation after all titles are visible
+    setTimeout(() => {
+      simulateTitleSelection();
+    }, titleButtons.length * 100 + 500);
+  }
+  
+  function showContentOutline() {
+    const stepContent = document.getElementById('step-content');
+    if (!stepContent) return;
+    
+    stepContent.innerHTML = `
+      <div class="grid grid-cols-3 gap-6">
+        <div class="outline-section border border-gray-200 rounded-lg p-4">
+          <h3 class="text-lg font-medium mb-4">Introduction</h3>
+          <ul class="space-y-3 text-gray-600">
+            <li>Overview of tea making process</li>
+            <li>Importance of mastering the art of tea making</li>
+            <li>Brief mention of the 5 easy steps to be covered</li>
+          </ul>
+        </div>
+
+        <div class="outline-section border border-gray-200 rounded-lg p-4">
+          <h3 class="text-lg font-medium mb-4">Introduction</h3>
+          <ul class="space-y-3 text-gray-600">
+            <li>Explanation of why learning to make tea is important</li>
+            <li>Quick preview of the 5 steps to be discussed</li>
+            <li>Step 1: Selecting Quality Tea Leaves</li>
+          </ul>
+        </div>
+
+        <div class="outline-section border border-gray-200 rounded-lg p-4 bg-gray-50">
+          <h3 class="text-lg font-medium mb-4">Custom Outline</h3>
+          <p class="text-gray-600 mb-4">Create your own outline structure from scratch</p>
+          <button class="w-full flex items-center justify-center gap-2 py-3 border-2 border-dashed border-gray-300 rounded-lg text-gray-500 hover:border-primary-500 hover:text-primary-600 transition-colors">
+            <span class="text-xl">+</span>
+            Start Custom Outline
+          </button>
+        </div>
+      </div>
+    `;
+    
+    const sections = stepContent.querySelectorAll('.writing-section, .preview-section');
+    sections.forEach((section, index) => {
+      setTimeout(() => {
+        section.style.transition = 'all 0.3s ease';
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+      }, index * 300);
+    });
+    
+    setTimeout(() => {
+      simulateNextClick();
+    }, 2000);
+  }
+  
+  function showContentWriting() {
+    const stepContent = document.getElementById('step-content');
+    if (!stepContent) return;
+    
+    stepContent.innerHTML = `
+      <div class="grid grid-cols-2 gap-8">
+        <div class="writing-section bg-white rounded-lg border border-gray-200 opacity-0 transform translate-y-4">
+          <div class="p-4">
+            <h3 class="font-medium mb-4">Writing Points</h3>
+            <div class="space-y-4">
+              <div class="writing-point">
+                <div class="flex items-center justify-between">
+                  <h4>Introduction</h4>
+                  <div class="flex gap-2">
+                    <button class="edit-btn">✏️</button>
+                    <button class="delete-btn">×</button>
+                  </div>
+                </div>
+                <textarea class="w-full mt-2 p-2 border border-gray-200 rounded resize-none" rows="3">Budget travel opens up a world of possibilities for exploring new destinations without breaking the bank.</textarea>
+                <input type="text" placeholder="Enter keywords for Introduction" class="w-full mt-2 p-2 border border-gray-200 rounded">
+              </div>
+              
+              <div class="writing-point">
+                <div class="flex items-center justify-between">
+                  <h4>Step 1: Smart Flight Booking</h4>
+                  <div class="flex gap-2">
+                    <button class="edit-btn">✏️</button>
+                    <button class="delete-btn">×</button>
+                  </div>
+                </div>
+                <textarea class="w-full mt-2 p-2 border border-gray-200 rounded resize-none" rows="3">Finding affordable flights requires strategic timing and smart use of comparison tools.</textarea>
+                <input type="text" placeholder="Enter keywords for Step 1" class="w-full mt-2 p-2 border border-gray-200 rounded">
+              </div>
+              
+              <div class="writing-point">
+                <div class="flex items-center justify-between">
+                  <h4>Step 2: Budget Accommodation</h4>
+                  <div class="flex gap-2">
+                    <button class="edit-btn">✏️</button>
+                    <button class="delete-btn">×</button>
+                  </div>
+                </div>
+                <textarea class="w-full mt-2 p-2 border border-gray-200 rounded resize-none" rows="3">Explore various accommodation options from hostels to vacation rentals to find the best value.</textarea>
+                <input type="text" placeholder="Enter keywords for Step 2" class="w-full mt-2 p-2 border border-gray-200 rounded">
+              </div>
+              
+              <div class="writing-point">
+                <div class="flex items-center justify-between">
+                  <h4>Step 3: Local Transportation</h4>
+                  <div class="flex gap-2">
+                    <button class="edit-btn">✏️</button>
+                    <button class="delete-btn">×</button>
+                  </div>
+                </div>
+                <textarea class="w-full mt-2 p-2 border border-gray-200 rounded resize-none" rows="3">Save money by using public transportation and exploring cities on foot.</textarea>
+                <input type="text" placeholder="Enter keywords for Step 3" class="w-full mt-2 p-2 border border-gray-200 rounded">
+              </div>
+              
+              <div class="writing-point">
+                <div class="flex items-center justify-between">
+                  <h4>Conclusion</h4>
+                  <div class="flex gap-2">
+                    <button class="edit-btn">✏️</button>
+                    <button class="delete-btn">×</button>
+                  </div>
+                </div>
+                <textarea class="w-full mt-2 p-2 border border-gray-200 rounded resize-none" rows="3">With careful planning and smart choices, budget travel can lead to incredible experiences.</textarea>
+                <input type="text" placeholder="Enter keywords for Conclusion" class="w-full mt-2 p-2 border border-gray-200 rounded">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="preview-section bg-white rounded-lg border border-gray-200 opacity-0 transform translate-y-4">
+          <div class="p-4">
+            <h3 class="font-medium mb-4">Preview</h3>
+            <div class="prose prose-sm">
+              <h2>Introduction</h2>
+              <p>Budget travel opens up a world of possibilities for exploring new destinations without breaking the bank.</p>
+              
+              <h2>Step 1: Smart Flight Booking</h2>
+              <p>Finding affordable flights requires strategic timing and smart use of comparison tools.</p>
+              
+              <h2>Step 2: Budget Accommodation</h2>
+              <p>Explore various accommodation options from hostels to vacation rentals to find the best value.</p>
+              
+              <h2>Step 3: Local Transportation</h2>
+              <p>Save money by using public transportation and exploring cities on foot.</p>
+              
+              <h2>Conclusion</h2>
+              <p>With careful planning and smart choices, budget travel can lead to incredible experiences.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    const sections = stepContent.querySelectorAll('.writing-section, .preview-section');
+    sections.forEach((section, index) => {
+      setTimeout(() => {
+        section.style.transition = 'all 0.3s ease';
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+      }, index * 300);
+    });
+    
+    setTimeout(() => {
+      simulateNextClick();
+    }, 2000);
+  }
+  
+  function showFinalContent() {
+    const stepContent = document.getElementById('step-content');
+    if (!stepContent) return;
+    
+    stepContent.innerHTML = `
+      <div class="final-content bg-white rounded-lg border border-gray-200 opacity-0 transform translate-y-4 p-8">
+        <div class="flex justify-between items-center mb-8">
+          <h2 class="text-2xl font-bold text-gray-900">${finalContent.title}</h2>
+          <button class="bt bt-pr">Copy the Content</button>
+        </div>
+        <div class="prose max-w-none text-gray-900">
+          ${finalContent.content.split('\n\n').map(paragraph => `<p class="text-gray-900">${paragraph}</p>`).join('')}
+        </div>
+      </div>
+    `;
+    
+    const finalContentElement = stepContent.querySelector('.final-content');
+    setTimeout(() => {
+      if (finalContentElement) {
+        finalContentElement.style.transition = 'all 0.3s ease';
+        finalContentElement.style.opacity = '1';
+        finalContentElement.style.transform = 'translateY(0)';
+      }
+    }, 100);
+  }
+  
+  function updateStep(step) {
+    const steps = document.querySelectorAll('.step');
+    const progressLine = document.querySelector('.progress-line');
+    const nextButton = document.getElementById('next-step');
+    
+    steps.forEach((s, index) => {
+      if (index + 1 <= step) {
+        s.classList.add('active');
+      } else {
+        s.classList.remove('active');
+      }
+    });
+    
+    // Show/hide next button based on step
+    if (nextButton) {
+      if (step < 5) {
+        nextButton.classList.remove('hidden');
+      } else {
+        nextButton.classList.add('hidden');
+      }
+    }
+    
+    if (progressLine) {
+      progressLine.style.background = `linear-gradient(to right, 
+        #000 ${((step - 1) / (steps.length - 1)) * 100}%, 
+        #e5e7eb ${((step - 1) / (steps.length - 1)) * 100}%
+      )`;
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const descriptionElement = document.getElementById('content-description');
+    const keywordsElement = document.getElementById('keywords');
+    const contentBuilder = document.querySelector('.an.d3');
+    const nextButton = document.getElementById('next-step');
+    let isAnimating = false;
+    
+    // Show next button initially
+    if (nextButton) {
+      nextButton.classList.remove('hidden');
+    }
+    
+    if (descriptionElement) descriptionElement.value = '';
+    if (keywordsElement) keywordsElement.value = '';
+    
+    // Start observing the content builder section
+    if (contentBuilder) {
+      observer.observe(contentBuilder);
+    }
+    
+    nextButton?.addEventListener('click', () => {
+      if (isAnimating) return;
+      currentStep++;
+      updateStep(currentStep);
+      isAnimating = true;
+
+      if (currentStep === 2) {
+        showTitleSelection();
+        setTimeout(() => {
+          isAnimating = false;
+        }, 300);
+      } else if (currentStep === 3) {
+        showContentOutline();
+        setTimeout(() => {
+          isAnimating = false;
+        }, 300);
+      } else if (currentStep === 4) {
+        showContentWriting();
+        setTimeout(() => {
+          isAnimating = false;
+        }, 300);
+      } else if (currentStep === 5) {
+        showFinalContent();
+        setTimeout(() => {
+          isAnimating = false;
+        }, 300);
+      }
+    });
+  });
+</script>
+
+<style>
+  .progress-line {
+    position: absolute;
+    top: 25px;
+    left: 50px;
+    right: 50px;
+    height: 2px;
+    background: #e5e7eb;
+    z-index: 0;
+  }
+  
+  .step {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  
+  .step span {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3f4f6;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+    font-weight: 500;
+    color: #6b7280;
+  }
+  
+  .step div {
+    color: #9ca3af;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .step.active span {
+    background: #000;
+    color: white;
+    transform: scale(1);
+    transition: all 0.3s ease;
+  }
+  
+  .pulse-animation {
+    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .title-option {
+    transition: all 0.3s ease;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+    }
+  }
+  
+  .step.active .step-label {
+    color: #000;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  textarea, input {
+    font-size: 16px;
+    color: #374151;
+  }
+  
+  textarea::placeholder, input::placeholder {
+    color: #9ca3af;
+  }
+
+  .outline-section {
+    background: white;
+    transition: all 0.3s ease;
+  }
+
+  .outline-section:hover {
+    border-color: #6366f1;
+  }
+</style>

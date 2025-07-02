@@ -1,0 +1,396 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const longTermPlans = [
+  { 
+    title: 'Atom Writer 2.0 UI',
+    description: 'Much more Unique and To the point design with easiest access',
+    date: 'March-May 2026',
+    details: {
+      overview: 'The UI will contain all the features in one single place so that users can access each features from the dashboard',
+      features: [
+        'All features list',
+        'One click category and hybrid category filtering',
+        'Frequently accessesed tools area',
+
+      ],
+      benefits: 'Enable seamless integration with each and every tools in one page'
+    }
+  },
+  { 
+    title: 'Voice Assistant',
+    description: 'Controll all the typing and page to page navigation features with voice',
+    date: 'April-August 2025',
+    details: {
+      overview: 'Making all tools accessible with voice commands',
+      features: [
+        'OpenAI Whisper Integration',
+        'Voice to Transcript Based Navigation',
+        'Analyze entire speech to find a tool or write text',
+        'Directly Interact with user',
+        'Export capabilities with voice command'
+      ],
+      benefits: 'Controlling everything with voice command.'
+    }
+  },
+  { 
+    title: 'Mobile Apps',
+    description: 'Native mobile applications for iOS and Android',
+    date: 'April 2026',
+    details: {
+      overview: 'Native mobile applications that bring the full power of Atom Writer to your mobile devices.',
+      features: [
+        'Full feature parity with web version',
+        'Offline support',
+        'Push notifications',
+        'Touch-optimized interface',
+        'Cloud sync'
+      ],
+      benefits: 'Write and edit on the go with a seamless mobile experience.'
+    }
+  }
+];
+
+const workInProgress = [
+  {
+    title: 'Surprise Features',
+    description: 'Brand Kit',
+    date: 'Coming soon on especial occation',
+    details: {
+      overview: 'something special',
+      features: [
+        'Hidden feature 1',
+        'Hidden feature 4',
+        'Hidden feature 7',
+
+      ],
+      benefits: 'Each features will be worth 3 features. Till will show.'
+    }
+  },
+    {
+    title: 'More blog wizard tools',
+    description: 'For scaling contents',
+    date: 'August-September 2025',
+    details: {
+      overview: 'Scaling contents with maximum efficiency',
+      features: [
+        'Top 10 type content builder',
+        'Comparison Content Builder',
+        'Rocket Fast Content Optimizer',
+
+      ],
+      benefits: 'Making larger amount of contents faster and more efficiently.'
+    }
+  },
+  {
+    title: 'Custom AI Chatbot',
+    description: 'Create your own specialist of taking expert advise',
+    date: 'October 2025',
+    details: {
+      overview: 'Create your desired chatbot with just a few simple texts.',
+      features: [
+        'Fine-Tuned Character based chatbot',
+        'Build your own chatbot feature',
+        'Text input identity based chatbot builder',
+      ],
+      benefits: 'Save time and maintain consistency with reliable advise bots.'
+    }
+  },
+  {
+    title: 'More SEO based productivity tools',
+    description: 'Advanced SEO optimization features',
+    date: 'September-December 2025',
+    details: {
+      overview: 'Comprehensive SEO tools to optimize your content for search engines.',
+      features: [
+        'Connect with realtime seo data api',
+        'Real-time SEO scoring',
+        'Competitor analysis',
+        'Schema markup analyzer',
+        'SEO reporting'
+      ],
+      benefits: 'Improve your contents visibility and ranking in search results.'
+    }
+  }
+  
+];
+
+const alreadyAdded = [
+  {
+    title: 'AI Writing Assistant',
+    description: 'AI-powered writing assistance with real-time suggestions',
+    date: 'Started from March 1, 2025 and will be updated regularly',
+    details: {
+      overview: 'Advanced AI that helps you write better content faster.',
+      features: [
+        'Blogging Assistant',
+        'Content Creation Assistant',
+        'Business Assistant',
+        'Legal Writing Assistant',
+        'Professional'
+      ],
+      benefits: 'Improve your writing quality and productivity with AI assistance.'
+    }
+  },
+  {
+    title: 'AI Blog Wizard',
+    description: 'Automatic Content Generation Tools with step by step guide',
+    date: 'Started from April 4, 2025 and new tools might be added time to time',
+    details: {
+      overview: 'Easy to access step by step tool',
+      features: [
+        'Step by Step builder',
+        'One Click Content Builder',
+      ],
+      benefits: 'Improve your writing quality by following steps.'
+    }
+  },
+  {
+    title: 'Important User functions',
+    description: 'AI-powered writing assistance with real-time suggestions',
+    date: 'Started from March 1, 2025 and still on regular improvement process',
+    details: {
+      overview: 'Advanced user based functions for easier use.',
+      features: [
+        'Redeem Codes Section',
+        'Package section',
+        'Gifts section',
+        'Support Ticket section',
+        'Contact section'
+      ],
+      benefits: 'Improved user experience.'
+    }
+  },
+  {
+    title: 'Productivity Tools',
+    description: 'Increase blogging productivity on the go',
+    date: 'April 5, 2025',
+    details: {
+      overview: 'Speed up your blogging process with ease by using our reliable productivity tools.',
+      features: [
+        'Content Calendar',
+        'Grammar Checker',
+        'Keywords Finder',
+        'AI Prompt Generator',
+        'Trending Topic Finder'
+      ],
+      benefits: 'Ensure your content is made faster and more efficiently.'
+    }
+  },
+  {
+    title: 'AI Chat Feature',
+    description: 'Get expert opinion directly from our polished ai robot',
+    date: 'May 1, 2025',
+    details: {
+      overview: 'Powerful content organization system for managing your writing projects.',
+      features: [
+        'Content Writer',
+        'SEO Expert',
+        'Coder',
+      ],
+      benefits: 'Get your answers from our well developed ai character based chatbots'
+    }
+  }
+];
+---
+
+<Layout title="Product Roadmap | Atom Writer">
+  <div class="pt-32 pb-20">
+    <div class="co max-w-5xl">
+      <div class="text-center mb-16">
+        <h1 class="h1 mb-4">Product <span class="gr-tx">Roadmap</span></h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          See what we're working on and what's coming next to make your writing experience even better.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Long Term Plans -->
+        <div class="cd">
+          <div class="bg-gray-50 rounded-t-lg p-4 border-b-2 border-gray-200">
+            <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+              <span class="text-xl">🎯</span> Long Term Plans
+            </h2>
+          </div>
+          <div class="p-4 space-y-4">
+            {longTermPlans.map(item => (
+              <button
+                class="w-full text-left bg-white rounded-lg p-4 shadow-sm border border-gray-100 hover:border-primary-300 transition-all cursor-pointer"
+                data-modal-trigger
+                data-title={item.title}
+                data-description={item.description}
+                data-date={item.date}
+                data-overview={item.details.overview}
+                data-features={JSON.stringify(item.details.features)}
+                data-benefits={item.details.benefits}
+              >
+                <h3 class="font-medium text-gray-900 mb-2">{item.title}</h3>
+                <p class="text-gray-600 text-sm mb-2">{item.description}</p>
+                <div class="text-xs text-gray-500">{item.date}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Work in Progress -->
+        <div class="cd">
+          <div class="bg-yellow-50 rounded-t-lg p-4 border-b-2 border-yellow-200">
+            <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+              <span class="text-xl">⚡</span> Work in Progress
+            </h2>
+          </div>
+          <div class="p-4 space-y-4">
+            {workInProgress.map(item => (
+              <button
+                class="w-full text-left bg-white rounded-lg p-4 shadow-sm border border-yellow-100 hover:border-yellow-300 transition-all cursor-pointer"
+                data-modal-trigger
+                data-title={item.title}
+                data-description={item.description}
+                data-date={item.date}
+                data-overview={item.details.overview}
+                data-features={JSON.stringify(item.details.features)}
+                data-benefits={item.details.benefits}
+              >
+                <h3 class="font-medium text-gray-900 mb-2">{item.title}</h3>
+                <p class="text-gray-600 text-sm mb-2">{item.description}</p>
+                <div class="text-xs text-gray-500">{item.date}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Already Added -->
+        <div class="cd">
+          <div class="bg-green-50 rounded-t-lg p-4 border-b-2 border-green-200">
+            <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+              <span class="text-xl">✅</span> Already Added
+            </h2>
+          </div>
+          <div class="p-4 space-y-4">
+            {alreadyAdded.map(item => (
+              <button
+                class="w-full text-left bg-white rounded-lg p-4 shadow-sm border border-green-100 hover:border-green-300 transition-all cursor-pointer"
+                data-modal-trigger
+                data-title={item.title}
+                data-description={item.description}
+                data-date={item.date}
+                data-overview={item.details.overview}
+                data-features={JSON.stringify(item.details.features)}
+                data-benefits={item.details.benefits}
+              >
+                <h3 class="font-medium text-gray-900 mb-2">{item.title}</h3>
+                <p class="text-gray-600 text-sm mb-2">{item.description}</p>
+                <div class="text-xs text-gray-500">{item.date}</div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div id="featureModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-4">
+              <h2 class="text-2xl font-bold text-gray-900" id="modalTitle"></h2>
+              <button class="text-gray-400 hover:text-gray-500" id="closeModal">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Overview</h3>
+                <p class="text-gray-600" id="modalOverview"></p>
+              </div>
+              <div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Key Features</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-600" id="modalFeatures"></ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Benefits</h3>
+                <p class="text-gray-600" id="modalBenefits"></p>
+              </div>
+              <div class="text-sm text-gray-500" id="modalDate"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-20 text-center">
+        <h2 class="h3 mb-6">Have a feature request?</h2>
+        <a href="https://www.messenger.com/t/678808178639122/" target="_blank" rel="noopener noreferrer" class="bt bt-pr inline-flex items-center">
+          Let's speak in FB
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .cd {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .cd:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  #featureModal {
+    backdrop-filter: blur(4px);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('featureModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalOverview = document.getElementById('modalOverview');
+    const modalFeatures = document.getElementById('modalFeatures');
+    const modalBenefits = document.getElementById('modalBenefits');
+    const modalDate = document.getElementById('modalDate');
+    
+    document.querySelectorAll('[data-modal-trigger]').forEach(button => {
+      button.addEventListener('click', () => {
+        const data = button.dataset;
+        modalTitle.textContent = data.title;
+        modalOverview.textContent = data.overview;
+        modalFeatures.innerHTML = JSON.parse(data.features)
+          .map(feature => `<li>${feature}</li>`)
+          .join('');
+        modalBenefits.textContent = data.benefits;
+        modalDate.textContent = `Expected Release: ${data.date}`;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    closeModal?.addEventListener('click', () => {
+      modal?.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+    
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal?.classList.contains('hidden')) {
+        modal?.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+</script>

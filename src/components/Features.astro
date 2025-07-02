@@ -1,0 +1,40 @@
+---
+import FeatureCard from "./FeatureCard.astro";
+---
+
+<section id="features" class="py-20 bg-gray-50">
+  <div class="co">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="an h2 mb-4">Powerful Features To<br /><span class="gr-tx">Supercharge Your Writing</span></h2>
+      <p class="an d1 text-lg text-gray-600 mb-8">
+        Our AI-powered tools help you create better content faster, without sacrificing quality or your unique voice.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <FeatureCard 
+        title="Step-by-Step Content Builder" 
+        description="Create perfectly structured content with our guided process. Our AI analyzes your topic and creates the ideal framework."
+        icon="builder"
+        delay="d1"
+        id="content-builder"
+      />
+      
+      <FeatureCard 
+        title="One-Click Blog Wizard" 
+        description="Generate complete blog posts instantly with just one click. Provide a topic and let our AI do the heavy lifting."
+        icon="wand"
+        delay="d2"
+        id="blog-wizard"
+      />
+      
+      <FeatureCard 
+        title="AI Writing Assistant" 
+        description="Get real-time suggestions, grammar corrections, and style improvements as you write. It's like having a professional editor by your side."
+        icon="chat"
+        delay="d3"
+        id="ai-chat"
+      />
+    </div>
+  </div>
+</section>

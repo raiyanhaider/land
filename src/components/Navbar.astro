@@ -1,0 +1,68 @@
+---
+---
+
+<header class="fixed w-full top-0 left-0 z-50 backdrop-blur-md bg-white/90 shadow-sm">
+  <div class="co flex items-center justify-between py-4">
+    <a href="/" class="flex items-center gap-2">
+      <span class="gr-tx h3 font-bold">Atom Writer</span>
+    </a>
+    
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="/#features" class="sm font-medium text-gray-700 hover:text-primary-600 transition">Features</a>
+      <a href="/#how-it-works" class="sm font-medium text-gray-700 hover:text-primary-600 transition">How It Works</a>
+      <a href="/#pricing" class="sm font-medium text-gray-700 hover:text-primary-600 transition">Pricing</a>
+      <a href="/#faq" class="sm font-medium text-gray-700 hover:text-primary-600 transition">FAQ</a>
+    </nav>
+    
+    <div class="hidden md:flex items-center gap-4">
+      <a href="https://app.atomwriter.com/login" target="blank" ="hidden sm:inline-block sm font-medium text-gray-700 hover:text-primary-600">Log in</a>
+      <a href="https://app.atomwriter.com/signup" class="bt bt-pr">Try Atom Writer Free</a>
+    </div>
+    
+    <button id="menu-toggle" class="md:hidden text-gray-700">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+  
+  <div id="mobile-menu" class="hidden md:hidden co py-4 border-t border-gray-200">
+    <nav class="flex flex-col gap-4 mb-4">
+      <a href="/#features" class="sm font-medium text-gray-700">Features</a>
+      <a href="/#how-it-works" class="sm font-medium text-gray-700">How It Works</a>
+      <a href="/#pricing" class="sm font-medium text-gray-700">Pricing</a>
+      <a href="/#faq" class="sm font-medium text-gray-700">FAQ</a>
+      <a href="#" class="sm font-medium text-gray-700">Log in</a>
+    </nav>
+    <a href="https://app.atomwriter.com/signup" class="bt bt-pr w-full text-center">Try Atom Writer Free</a>
+  </div>
+</header>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  menuToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+  
+  // Close mobile menu when clicking on links
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+  
+  // Change header background on scroll
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header?.classList.add('shadow-md');
+      header?.classList.remove('shadow-sm');
+    } else {
+      header?.classList.remove('shadow-md');
+      header?.classList.add('shadow-sm');
+    }
+  });
+</script>
